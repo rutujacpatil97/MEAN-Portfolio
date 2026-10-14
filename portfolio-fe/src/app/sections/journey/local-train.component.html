@@ -1,0 +1,194 @@
+<svg viewBox="0 0 1096 120" aria-hidden="true" [class.is-moving]="isMoving">
+  @for (x of couplerPositions; track x) {
+    <rect [attr.x]="x" y="40" width="14" height="8" fill="#2a2d33" />
+  }
+
+  @for (coach of coaches; track coach.offsetX) {
+    <g [attr.transform]="'translate(' + coach.offsetX + ')'">
+      <!-- roof, air-conditioning box and pantograph -->
+      <rect
+        x="10"
+        y="8"
+        [attr.width]="coach.isLeading ? 320 : 340"
+        height="8"
+        rx="4"
+        fill="#d6cfc2"
+      />
+      <rect x="130" y="3" width="70" height="6" rx="2" fill="#a9a396" />
+      @if (coach.hasPantograph) {
+        <path
+          d="M215 8l16-8 16 8"
+          fill="none"
+          stroke="#5a6470"
+          stroke-width="2.5"
+        />
+      }
+
+      <!-- body with the purple stripes -->
+      <path
+        [attr.d]="
+          coach.isLeading
+            ? 'M4 14H322Q358 18 360 60L358 86H4Z'
+            : 'M4 14H356V86H4Z'
+        "
+        fill="#ece6da"
+        stroke="#b9b2a3"
+        stroke-width="1.5"
+      />
+      <rect
+        x="4"
+        y="14"
+        [attr.width]="coach.isLeading ? 320 : 352"
+        height="3"
+        fill="#8a3b9e"
+      />
+      <rect
+        x="4"
+        y="60"
+        [attr.width]="coach.isLeading ? 354 : 352"
+        height="22"
+        fill="#8a3b9e"
+      />
+
+      <!-- open doorways -->
+      @for (doorX of doorPositions; track doorX) {
+        <polygon
+          [attr.points]="
+            doorX +
+            44 +
+            ',17 ' +
+            (doorX + 64) +
+            ',17 ' +
+            (doorX + 50) +
+            ',60 ' +
+            (doorX + 40) +
+            ',60'
+          "
+          fill="#8a3b9e"
+        />
+        <rect [attr.x]="doorX" y="20" width="40" height="64" fill="#2b2e34" />
+        <rect
+          [attr.x]="doorX + 3"
+          y="23"
+          width="18"
+          height="40"
+          fill="#4a5058"
+        />
+        <rect
+          [attr.x]="doorX + 22"
+          y="46"
+          width="14"
+          height="34"
+          rx="2"
+          fill="#bfae6f"
+        />
+        <rect
+          [attr.x]="doorX + 46"
+          y="28"
+          width="10"
+          height="13"
+          fill="#fff"
+          stroke="#888"
+          stroke-width=".8"
+        />
+        <rect
+          [attr.x]="doorX + 4"
+          y="86"
+          width="26"
+          height="10"
+          fill="none"
+          stroke="#2a2d33"
+          stroke-width="2"
+        />
+      }
+
+      <!-- barred windows -->
+      @for (windowX of windowPositions; track windowX) {
+        <rect
+          [attr.x]="windowX"
+          y="26"
+          width="62"
+          height="34"
+          rx="3"
+          fill="#a98a5a"
+          stroke="#6b4e2a"
+          stroke-width="2.5"
+        />
+        <line
+          [attr.x1]="windowX + 2"
+          y1="43"
+          [attr.x2]="windowX + 60"
+          y2="43"
+          stroke="#5b4527"
+          stroke-width="30"
+          stroke-dasharray="1.2 4.2"
+        />
+      }
+      <rect
+        x="14"
+        y="26"
+        width="22"
+        height="34"
+        rx="3"
+        fill="#a98a5a"
+        stroke="#6b4e2a"
+        stroke-width="2"
+      />
+
+      <!-- lettering -->
+      <text x="20" y="23" font-family="monospace" font-size="7" fill="#3b3b3b">
+        {{ coach.number }}
+      </text>
+      <text
+        x="190"
+        y="22"
+        font-family="Arial"
+        font-size="5.5"
+        fill="#444"
+        letter-spacing=".6"
+      >
+        CENTRAL RAILWAY
+      </text>
+      <text
+        x="186"
+        y="79"
+        font-family="Arial"
+        font-weight="700"
+        font-size="20"
+        fill="#e3dcec"
+      >
+        CR
+      </text>
+
+      <!-- underframe and wheels -->
+      <rect x="8" y="86" width="344" height="9" fill="#2a2d33" />
+      <rect x="40" y="94" width="64" height="8" fill="#1f2226" />
+      <rect x="256" y="94" width="64" height="8" fill="#1f2226" />
+      @for (wheelX of wheelPositions; track wheelX) {
+        <g [attr.transform]="'translate(' + wheelX + ' 106)'">
+          <g class="wheel">
+            <circle r="8" fill="#1d2025" stroke="#5a6470" stroke-width="1.5" />
+            <circle r="2.5" fill="#9aa5b1" />
+            <line x1="-8" x2="8" stroke="#9aa5b1" stroke-width="1.5" />
+          </g>
+        </g>
+      }
+
+      <!-- driver's cab and headlamp -->
+      @if (coach.isLeading) {
+        <rect
+          x="326"
+          y="26"
+          width="20"
+          height="34"
+          rx="3"
+          fill="#6b5a40"
+          stroke="#4a3d2a"
+          stroke-width="2"
+        />
+        <rect x="332" y="10" width="22" height="6" rx="2" fill="#f0c419" />
+        <circle class="headlamp" cx="354" cy="70" r="4.5" fill="#fff3b0" />
+      }
+    </g>
+  }
+</svg>

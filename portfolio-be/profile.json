@@ -1,0 +1,239 @@
+{
+  "name": "Rutuja Patil",
+  "title": "Senior Angular Developer | MEAN Stack Developer",
+  "tagline": "7 years building enterprise-scale BFSI web apps.",
+  "summary": "IT professional with 7 years of experience delivering enterprise-scale web applications in the BFSI domain. Expertise in state management, performance optimization and end-to-end development. Leads front-end initiatives in Agile teams and builds full-stack apps with REST APIs, auth and cloud deployment.",
+  "contact": {
+    "email": "rutujacpatil97@gmail.com",
+    "phone": "+91-XXXXX9057",
+    "linkedin": "https://linkedin.com/in/rutujacpatil97",
+    "location": "Seawoods, Navi Mumbai, Maharashtra"
+  },
+  "skills": {
+    "Frontend": [
+      "Angular (8+)",
+      "TypeScript",
+      "JavaScript (ES6+)",
+      "RxJS",
+      "NgRx",
+      "HTML5",
+      "CSS3"
+    ],
+    "Backend": [
+      "Node.js",
+      "Express.js",
+      "REST APIs",
+      "JWT Auth",
+      "RBAC",
+      "CRUD"
+    ],
+    "Databases": ["MongoDB", "SQL"],
+    "Tools": ["Git", "Postman", "VS Code", "Chrome DevTools", "JIRA", "Figma"],
+    "Cloud & DevOps": [
+      "AWS ECS",
+      "CI/CD",
+      "JFrog Artifactory",
+      "AWS CodeCommit",
+      "GitHub",
+      "Jenkins"
+    ],
+    "Practices": [
+      "Performance Optimization",
+      "State Management",
+      "Agile/Scrum",
+      "Responsive Design",
+      "Cross-Browser Compatibility",
+      "Unit Testing"
+    ]
+  },
+  "experience": [
+    {
+      "company": "ICICI Lombard",
+      "role": "Associate Software Engineer",
+      "period": "Dec 2024 – Aug 2026",
+      "points": [
+        "Led front-end development of enterprise Angular apps for core insurance processes.",
+        "Drove modernization with Angular Signals for better state management and performance.",
+        "Mentored junior developers and ran code reviews.",
+        "Built reusable custom Angular component libraries used across business modules."
+      ]
+    },
+    {
+      "company": "Clover Infotech (Client: ICICI Lombard)",
+      "role": "Senior Software Engineer",
+      "period": "Jan 2023 – Dec 2024",
+      "points": [
+        "Worked on large-scale insurance apps serving multiple business functions.",
+        "Collaborated with stakeholders, QA and backend teams on timely releases.",
+        "Contributed to architecture discussions and front-end performance work."
+      ]
+    },
+    {
+      "company": "Tata Consultancy Services",
+      "role": "System Engineer",
+      "period": "Jul 2019 – Jan 2023",
+      "points": [
+        "Built enterprise web apps and interactive dashboards for banking clients.",
+        "Integrated REST services and complex client-side workflows with Angular + TypeScript.",
+        "Resolved high-priority production issues within SLA/TAT."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "SmartHelpDesk (MEAN)",
+      "desc": "Ticket management system with JWT auth, role-based access, ticket lifecycle, pagination, search and filtering for employees, admins and engineers.",
+      "stack": "Angular, Node.js, Express, MongoDB, JWT",
+      "links": [
+        {
+          "label": "Live demo",
+          "url": "https://smarthelpdesk-frontend.vercel.app"
+        },
+        {
+          "label": "Frontend GitHub",
+          "url": "https://github.com/rutujacpatil97/smarthelpdesk-fe"
+        },
+        {
+          "label": "Backend GitHub",
+          "url": "https://github.com/rutujacpatil97/smarthelpdesk-be"
+        }
+      ]
+    },
+    {
+      "name": "NYSA Motor Insurance",
+      "desc": "Agent-facing two- and four-wheeler journeys: quote, premium calculation, proposal, payment and policy issuance.",
+      "stack": "Angular, TypeScript"
+    },
+    {
+      "name": "Multi Quote",
+      "desc": "Application revamp with multi-tenure quotes to compare options. Owned the AddOn and Discount modules.",
+      "stack": "Angular, TypeScript"
+    },
+    {
+      "name": "Issuance & Endorsement QC",
+      "desc": "QC portal for proposal verification with slideshow document review and reason-wise approve/reject workflows.",
+      "stack": "Angular, TypeScript"
+    },
+    {
+      "name": "Add-on Applicability",
+      "desc": "Dynamic add-on eligibility and API-driven bundles (Zero Dep, Consumables, RSA, Tyre/Engine Protect) with real-time premium recalculation.",
+      "stack": "Angular, RxJS"
+    }
+  ],
+  "education": [
+    "B.E. Electronics & Telecommunication, Mumbai University (2019) – CGPA 8.93",
+    "H.S.C. (2015) – 84.77%",
+    "S.S.C. (2013) – 92.18%"
+  ],
+  "certs": [
+    "Angular – The Complete Guide",
+    "Scrum Foundation Professional",
+    "REST APIs",
+    "Oracle SQL",
+    "Spring Boot",
+    "Publication: 32-bit Processor Design on FPGA (JASC, 2019)"
+  ],
+  "achievements": [
+    "Star of the Quarter, Star of the Month, Best Team Award, Certificate of Excellence",
+    "Led multiple agent-facing insurance modules from implementation to production"
+  ],
+  "journey": [
+    {
+      "kind": "edu",
+      "station": "Nerul",
+      "title": "S.S.C.",
+      "place": "D.A.V. Public School",
+      "period": "2013",
+      "points": ["92.18%"]
+    },
+    {
+      "kind": "edu",
+      "station": "Matunga",
+      "title": "H.S.C. – Electronics",
+      "place": "D.G. Ruparel College",
+      "period": "2015",
+      "points": ["84.77%"]
+    },
+    {
+      "kind": "edu",
+      "station": "Nerul",
+      "title": "B.E. Electronics & Telecommunication",
+      "place": "SIES Graduate School of Technology",
+      "period": "2019",
+      "points": ["CGPA 8.93", "Published: 32-bit Processor Design on FPGA"]
+    },
+    {
+      "kind": "work",
+      "station": "Tata Consultancy Services",
+      "title": "System Engineer",
+      "place": "Tata Consultancy Services",
+      "period": "Jul 2019 – Jan 2023",
+      "points": [
+        "Built enterprise web apps and interactive dashboards for banking clients.",
+        "Integrated REST services and complex client-side workflows with Angular + TypeScript.",
+        "Resolved high-priority production issues within SLA/TAT."
+      ]
+    },
+    {
+      "kind": "work",
+      "station": "Clover Infotech",
+      "title": "Senior Software Engineer",
+      "place": "Clover Infotech (Client: ICICI Lombard)",
+      "period": "Jan 2023 – Dec 2024",
+      "points": [
+        "Worked on large-scale insurance apps serving multiple business functions.",
+        "Collaborated with stakeholders, QA and backend teams on timely releases.",
+        "Contributed to architecture discussions and front-end performance work."
+      ]
+    },
+    {
+      "kind": "work",
+      "station": "ICICI Lombard",
+      "title": "Associate Software Engineer",
+      "place": "ICICI Lombard",
+      "period": "Dec 2024 – Aug 2026",
+      "points": [
+        "Led front-end development of enterprise Angular apps for core insurance processes.",
+        "Drove modernization with Angular Signals for better state management and performance.",
+        "Mentored junior developers and ran code reviews.",
+        "Built reusable custom Angular component libraries used across business modules."
+      ]
+    }
+  ],
+  "awards": [
+    {
+      "title": "Star of the Quarter",
+      "note": "Quarterly performance and excellence recognition."
+    },
+    {
+      "title": "Star of the Month",
+      "note": "Monthly recognition for outstanding delivery."
+    },
+    {
+      "title": "Best Team Award",
+      "note": "Recognised for team collaboration and delivery."
+    },
+    {
+      "title": "Certificate of Excellence",
+      "note": "Awarded for excellence in engineering work."
+    },
+    {
+      "title": "Led agent-facing modules",
+      "note": "Owned multiple insurance modules from implementation to production."
+    },
+    {
+      "title": "Angular Signals modernization",
+      "note": "Key role in improving state management and performance."
+    },
+    {
+      "title": "FPGA publication",
+      "note": "32-bit Processor Design on FPGA, UGC-approved JASC Journal (2019)."
+    }
+  ],
+  "avatar": {
+    "skin": "#e3b08d",
+    "hair": "#1d1420",
+    "outfit": "#4f46e5",
+    "glasses": false
+  }
+}

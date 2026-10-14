@@ -1,0 +1,121 @@
+<section class="projects full-screen-section fade-in-from-above">
+  <div class="container">
+    <header class="section-heading">
+      <p class="eyebrow">03 — SELECTED WORK</p>
+      <h2>Things I've built</h2>
+      <p>
+        Every project is a ticket. Pick one to punch it and see what's inside.
+      </p>
+    </header>
+
+    <div class="filters" role="group" aria-label="Filter projects">
+      @for (filter of filters; track filter) {
+        <button
+          class="filter"
+          type="button"
+          [class.is-active]="activeFilter() === filter"
+          (click)="activeFilter.set(filter)"
+        >
+          {{ filter }}
+        </button>
+      }
+    </div>
+
+    <div class="ticket-grid">
+      @for (ticket of tickets(); track ticket.name; let index = $index) {
+        <article
+          class="ticket"
+          [class.is-featured]="index === 0"
+          [class.is-open]="openTicketIndex() === index"
+          [class.is-dimmed]="!matchesFilter(ticket)"
+          [attr.data-accent]="index % 4"
+        >
+          <div class="ticket-main">
+            <button
+              class="ticket-header"
+              type="button"
+              [attr.aria-expanded]="openTicketIndex() === index"
+              [attr.aria-controls]="'ticket-details-' + index"
+              (click)="toggleTicket(index)"
+            >
+              <span class="ticket-label">PROJECT TICKET</span>
+              <span class="ticket-title">{{ ticket.name }}</span>
+              <span class="ticket-route">
+                <span>{{ ticket.routeFrom }}</span
+                ><i></i><span>{{ ticket.routeTo }}</span>
+              </span>
+              <span class="ticket-summary">{{ ticket.desc }}</span>
+            </button>
+
+            <div
+              class="ticket-details"
+              [id]="'ticket-details-' + index"
+              [attr.inert]="openTicketIndex() === index ? null : ''"
+            >
+              <div class="details-inner">
+                <p class="details-text">{{ ticket.desc }}</p>
+
+                <div class="tags">
+                  @for (technology of ticket.technologies; track technology) {
+                    <span class="tag">{{ technology }}</span>
+                  }
+                </div>
+
+                @if (ticket.layers.length) {
+                  <div class="flow" role="group" aria-label="Architecture">
+                    @for (
+                      layer of ticket.layers;
+                      track layer.name;
+                      let isLast = $last
+                    ) {
+                      <button
+                        class="flow-node"
+                        type="button"
+                        [class.is-active]="
+                          selectedLayer(ticket)?.name === layer.name
+                        "
+                        (click)="selectedLayerName.set(layer.name)"
+                      >
+                        {{ layer.name }}
+                      </button>
+                      @if (!isLast) {
+                        <span class="flow-arrow" aria-hidden="true"></span>
+                      }
+                    }
+                  </div>
+                  <p class="flow-detail">{{ selectedLayer(ticket)?.detail }}</p>
+                }
+
+                @if (ticket.links?.length) {
+                  <div class="project-links">
+                    @for (link of ticket.links; track link.url) {
+                      <a [href]="link.url" target="_blank" rel="noopener"
+                        >{{ link.label }} ↗</a
+                      >
+                    }
+                  </div>
+                }
+              </div>
+            </div>
+
+            <span class="ticket-barcode"></span>
+          </div>
+
+          <!-- the stub is decorative; the header button above is the accessible control -->
+          <div
+            class="ticket-stub"
+            aria-hidden="true"
+            (click)="toggleTicket(index)"
+          >
+            <span class="stub-number">{{ ticket.number }}</span>
+            <span class="punch-hole"></span>
+            <span class="punch-stamp">PUNCHED</span>
+            <span class="stub-hint">{{
+              openTicketIndex() === index ? "CLOSE" : "PUNCH"
+            }}</span>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

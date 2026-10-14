@@ -1,0 +1,120 @@
+/* Skills: a soldered circuit board. Each skill group is an IC chip wired to the central processor. */
+:host {
+  display: block;
+}
+.skills {
+  padding-top: 120px;
+  background: var(--color-night);
+  color: #e8ecf2;
+  --fade-colour: var(--color-paper);
+}
+.skills .eyebrow {
+  color: var(--color-gold);
+}
+.skills .section-heading p:last-child {
+  color: #98a3b3;
+}
+.circuit-board {
+  width: 100%;
+  display: block;
+  margin-top: 40px;
+  filter: drop-shadow(0 30px 40px #000a);
+}
+.copper-trace {
+  fill: none;
+  stroke: #b98a52;
+  stroke-width: 3;
+  opacity: 0.5;
+}
+.processor-label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  fill: #e6efe9;
+  font-size: 26px;
+  letter-spacing: 0.06em;
+}
+.silkscreen {
+  fill: #e6efe9;
+  font:
+    500 12px "DM Mono",
+    monospace;
+  letter-spacing: 0.1em;
+}
+.pin-label {
+  fill: #b9c4cf;
+  font:
+    12px "DM Mono",
+    monospace;
+}
+.chip-body {
+  fill: #14181e;
+  stroke: #2f3742;
+  stroke-width: 2;
+  transition: 0.25s;
+}
+.chip-group {
+  cursor: pointer;
+  outline: 0;
+}
+.chip-group.is-active .chip-body {
+  stroke: #e6efe9;
+}
+.wire-shadow {
+  fill: none;
+  stroke: #0009;
+  stroke-width: 9;
+  stroke-linecap: round;
+}
+.jumper-wire {
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+  transition: 0.25s;
+}
+.chip-group.is-active .jumper-wire {
+  stroke-width: 6;
+}
+.wire-current {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-dasharray: 4 16;
+  stroke-linecap: round;
+  opacity: 0;
+}
+.chip-group.is-active .wire-current {
+  opacity: 0.95;
+  animation: fl 1s linear infinite;
+}
+@keyframes fl {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+.skill-cards {
+  display: none;
+  gap: 14px;
+  margin-top: 32px;
+}
+.skill-card {
+  border: 1px solid #2a3340;
+  border-radius: 16px;
+  padding: 16px;
+  background: #121923;
+}
+.skill-card h3 {
+  margin: 0;
+  color: var(--color-gold);
+  font-size: 18px;
+}
+.skills .tag {
+  color: #b9c4cf;
+}
+@media (max-width: 760px) {
+  .circuit-board {
+    display: none;
+  }
+  .skill-cards {
+    display: grid;
+  }
+}

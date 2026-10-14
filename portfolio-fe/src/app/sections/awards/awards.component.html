@@ -1,0 +1,72 @@
+<section class="awards full-screen-section">
+  <div class="container section-heading">
+    <p class="eyebrow">04 — THE NIGHT SKY</p>
+    <h2>Stars along the way</h2>
+    <p>Every award is a star. Tap one to read its story.</p>
+  </div>
+
+  <div class="sky">
+    <!-- background stars and the constellation line; coordinates are percentages so the sky fills any screen -->
+    <svg class="sky-backdrop" aria-hidden="true">
+      @for (star of backgroundStars; track $index) {
+        <circle
+          class="twinkle"
+          [attr.cx]="star.left + '%'"
+          [attr.cy]="star.top + '%'"
+          [attr.r]="star.radius"
+          [style.animation-delay.s]="star.twinkleDelay"
+        />
+      }
+      @for (link of constellationLinks(); track $index) {
+        <line
+          class="constellation-line"
+          [attr.x1]="link.fromLeft + '%'"
+          [attr.y1]="link.fromTop + '%'"
+          [attr.x2]="link.toLeft + '%'"
+          [attr.y2]="link.toTop + '%'"
+        />
+      }
+    </svg>
+
+    @for (star of awardStars(); track star.title; let index = $index) {
+      <button
+        class="award-star"
+        type="button"
+        [class.is-selected]="selectedAwardIndex() === index"
+        [style.left.%]="star.left"
+        [style.top.%]="star.top"
+        [attr.aria-label]="star.title"
+        (click)="selectAward(index)"
+      >
+        <span class="star-glyph">★</span>
+        <span class="award-label">{{ star.title }}</span>
+      </button>
+    }
+
+    <div class="award-panel container">
+      <div class="award-list">
+        @for (
+          award of profile()?.awards;
+          track award.title;
+          let index = $index
+        ) {
+          <button
+            class="award"
+            type="button"
+            [class.is-active]="selectedAwardIndex() === index"
+            (click)="selectAward(index)"
+          >
+            ★ {{ award.title }}
+          </button>
+        }
+      </div>
+
+      @if (selectedAward(); as award) {
+        <div class="award-detail">
+          <h3>★ {{ award.title }}</h3>
+          <p>{{ award.note }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>

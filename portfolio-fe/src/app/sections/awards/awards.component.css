@@ -1,0 +1,196 @@
+/* Awards: a night sky that fills one screen. Each award is a star, joined by a dashed constellation line. */
+:host {
+  display: block;
+}
+
+.awards {
+  /* the sky takes the whole screen: heading on top, stars in the middle, award details at the bottom */
+  height: 100svh;
+  min-height: 640px;
+  justify-content: flex-start;
+  padding: 112px 0 96px;
+  background:
+    radial-gradient(ellipse at 25% 30%, #2a1b5e55, transparent 60%),
+    radial-gradient(ellipse at 80% 60%, #0f4c6a44, transparent 55%),
+    var(--color-night);
+  color: #fff;
+}
+
+/* soft fades into the neighbouring sections */
+.awards::before,
+.awards::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+.awards::before {
+  top: 0;
+  height: 100px;
+  background: linear-gradient(var(--color-paper), transparent);
+}
+
+.awards::after {
+  bottom: 0;
+  height: 80px;
+  background: linear-gradient(transparent, var(--color-teal-deep));
+}
+
+.awards .eyebrow {
+  color: var(--color-gold);
+}
+
+.awards .section-heading p:last-child {
+  color: #aab4d6;
+}
+
+.sky {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.sky-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.sky-backdrop circle {
+  fill: #cfd8ff;
+}
+
+.twinkle {
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.constellation-line {
+  stroke: #f3d58a;
+  stroke-opacity: 0.45;
+  stroke-width: 1.5;
+  stroke-dasharray: 3 7;
+}
+
+/* ---- award stars ---- */
+
+.award-star {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transform: translate(-50%, -50%);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #f3d58a;
+  cursor: pointer;
+}
+
+.star-glyph {
+  font-size: 38px;
+  line-height: 1;
+  text-shadow: 0 0 14px #f3d58aaa;
+  transition: transform 0.25s;
+}
+
+.award-star:hover .star-glyph {
+  transform: scale(1.25);
+}
+
+.award-star.is-selected .star-glyph {
+  transform: scale(1.5);
+}
+
+.award-label {
+  max-width: 130px;
+  color: #e8ecff;
+  font:
+    14px/1.3 Inter,
+    sans-serif;
+  text-align: center;
+}
+
+/* ---- award list and details, overlaid at the bottom of the sky ---- */
+
+.award-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.award-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.award {
+  padding: 6px 14px;
+  border: 1px solid #ffffff4d;
+  border-radius: 99px;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.award:hover {
+  border-color: #f3d58a;
+}
+
+.award.is-active {
+  border-color: #f3d58a;
+  background: #f3d58a;
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+.award-detail {
+  max-width: 620px;
+  padding: 14px 18px;
+  border: 1px solid #ffffff26;
+  border-radius: 14px;
+  background: #0b102099;
+  backdrop-filter: blur(6px);
+}
+
+.award-detail h3 {
+  margin: 0;
+  color: #f3d58a;
+  font-size: 24px;
+}
+
+.award-detail p {
+  margin: 4px 0 0;
+  color: #cfd6f2;
+}
+
+/* On phones the stars carry no labels and the detail panel replaces the award list. */
+@media (max-width: 700px) {
+  .award-label,
+  .award-list {
+    display: none;
+  }
+
+  .star-glyph {
+    font-size: 30px;
+  }
+}

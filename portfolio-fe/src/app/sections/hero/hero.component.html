@@ -1,0 +1,125 @@
+<section class="hero" id="home">
+  <div class="hero-orbit orbit-one"></div>
+  <div class="hero-orbit orbit-two"></div>
+  <div class="hero-layout">
+    <div class="hero-copy">
+      <p class="eyebrow">
+        <span class="status-dot"></span> OPEN TO THE RIGHT OPPORTUNITY
+      </p>
+      @if (isLoading()) {
+        <p class="mono muted-text">PREPARING YOUR JOURNEY…</p>
+      }
+      @if (loadError()) {
+        <p class="load-error">
+          {{ loadError() }} Check that the API is running and the deployment URL
+          is correct.
+        </p>
+      }
+      <p class="intro-label">HELLO, I'M</p>
+      <h1>{{ profile()?.name }}<span class="name-period">.</span></h1>
+      <p class="hero-role">{{ profile()?.title }}</p>
+      <p class="hero-summary">{{ profile()?.tagline }}</p>
+      <div class="hero-actions">
+        <a class="primary-link" href="#journey"
+          >Explore my journey <span>↘</span></a
+        ><a class="text-link" href="#projects"
+          >View selected work <span>↗</span></a
+        >
+      </div>
+      <div class="hero-proof">
+        <div>
+          <strong>07<span>+</span></strong
+          ><small>YEARS IN FRONTEND</small>
+        </div>
+        <i></i>
+        <div><strong>MEAN</strong><small>FULL-STACK PROJECTS</small></div>
+        <i></i>
+        <div><strong>BFSI</strong><small>DOMAIN EXPERIENCE</small></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="visual-kicker">
+        <span class="kicker-line"></span><span>YOUR CAREER, IN MOTION</span>
+      </div>
+      <div class="ticket-wrap">
+        <button
+          class="ticket"
+          type="button"
+          [class.is-flipped]="isTicketFlipped()"
+          (click)="toggleTicket()"
+          [attr.aria-label]="
+            isTicketFlipped()
+              ? 'Show front of season pass'
+              : 'Flip season pass for contact details'
+          "
+        >
+          <span class="ticket-inner">
+            <span class="ticket-face front">
+              <span class="ticket-main">
+                <span class="ticket-top"
+                  ><span>MUMBAI LOCAL</span
+                  ><span class="ticket-pill">FIRST CLASS</span></span
+                >
+                <span class="ticket-title">SEASON<br />PASS</span>
+                <span
+                  ><b class="ticket-name">{{ profile()?.name }}</b
+                  ><br /><span class="ticket-role">{{
+                    profile()?.title
+                  }}</span></span
+                >
+                <span class="ticket-route"
+                  ><span>NERUL</span><i></i><span>YOUR NEXT STOP</span></span
+                >
+                <span class="ticket-barcode"></span>
+              </span>
+              <span class="ticket-stub">
+                @if (!hasPhotoFailed()) {
+                  <img
+                    class="ticket-photo"
+                    src="assets/linkedin-profile.jpg"
+                    alt="Portrait of {{ profile()?.name }}"
+                    (error)="hasPhotoFailed.set(true)"
+                  />
+                } @else {
+                  <span class="ticket-photo ticket-initials">RP</span>
+                }
+                <small>ID · 7 YRS ANGULAR</small>
+              </span>
+            </span>
+            <span class="ticket-face back">
+              <span class="ticket-main"
+                ><span class="ticket-top"
+                  ><span>CONTACT</span
+                  ><span class="ticket-pill">VALID 7 YEARS</span></span
+                >
+                <span class="ticket-contact"
+                  ><b>{{ profile()?.contact?.email }}</b
+                  ><br />{{ profile()?.contact?.phone }}<br />{{
+                    profile()?.contact?.location
+                  }}</span
+                ><small>TAP TO FLIP BACK</small></span
+              >
+              <span class="ticket-stub"
+                ><span class="ticket-photo ticket-initials">★</span></span
+              >
+            </span>
+          </span>
+        </button>
+        <span class="sticker sticker-years">7+<small>YEARS</small></span
+        ><span class="sticker sticker-stack">MEAN<small>STACK</small></span
+        ><span class="sticker sticker-domain">BFSI<small>DOMAIN</small></span>
+      </div>
+      <p class="pass-hint">
+        <span>↻</span> FLIP YOUR PASS TO FIND MY CONTACT DETAILS
+      </p>
+      <div class="visual-stamp">
+        <span>MADE IN</span><strong>NAVI<br />MUMBAI</strong
+        ><span>BUILT WITH CURIOSITY · 2026</span>
+      </div>
+    </div>
+  </div>
+  <a class="scroll-cue" href="#journey"
+    ><span class="scroll-line"></span><span>SCROLL TO EXPLORE</span
+    ><span>↓</span></a
+  >
+</section>

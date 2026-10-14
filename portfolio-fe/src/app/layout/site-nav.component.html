@@ -1,0 +1,35 @@
+<header class="site-header" [class.is-scrolled]="isScrolled()">
+  <a class="brand" href="#home">RP<span>.</span></a>
+
+  <nav
+    id="site-nav"
+    [class.is-open]="isMenuOpen()"
+    aria-label="Main navigation"
+  >
+    @for (link of links; track link.sectionId) {
+      <a
+        [href]="'#' + link.sectionId"
+        [class.is-active]="activeSectionId() === link.sectionId"
+        (click)="closeMenu()"
+      >
+        {{ link.label }}
+      </a>
+    }
+  </nav>
+
+  <a class="btn nav-resume" href="assets/RutujaPatil_Resume.pdf" download
+    >Resume ↓</a
+  >
+
+  <button
+    class="menu-toggle"
+    type="button"
+    [class.is-open]="isMenuOpen()"
+    [attr.aria-expanded]="isMenuOpen()"
+    aria-controls="site-nav"
+    aria-label="Toggle menu"
+    (click)="toggleMenu()"
+  >
+    <span></span><span></span><span></span>
+  </button>
+</header>

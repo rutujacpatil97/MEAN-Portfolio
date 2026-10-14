@@ -1,0 +1,47 @@
+<app-site-nav />
+
+<main>
+  <app-hero />
+  <app-journey />
+
+  <!--
+    The sections below are loaded when they come near the screen. Each one sits in a wrapper that
+    already has its id and a full-screen placeholder, so nav links and scroll-spy work before it loads.
+  -->
+  <div id="skills">
+    @defer (on viewport; prefetch on idle) {
+      <app-skills />
+    } @placeholder {
+      <div class="section-placeholder"></div>
+    }
+  </div>
+
+  <div id="projects">
+    @defer (on viewport; prefetch on idle) {
+      <app-projects />
+    } @placeholder {
+      <div class="section-placeholder"></div>
+    }
+  </div>
+
+  <div id="achievements">
+    @defer (on viewport; prefetch on idle) {
+      <app-awards />
+    } @placeholder {
+      <div class="section-placeholder"></div>
+    }
+  </div>
+
+  <div id="contact">
+    @defer (on viewport; prefetch on idle) {
+      <app-contact />
+    } @placeholder {
+      <div class="section-placeholder"></div>
+    }
+  </div>
+</main>
+
+<footer class="site-footer">
+  © {{ currentYear }} {{ profile()?.name }} · Built with the MEAN stack · data:
+  {{ dataSource() }}
+</footer>

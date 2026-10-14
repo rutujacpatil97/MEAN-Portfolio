@@ -1,0 +1,228 @@
+/* LED platform board: black panel, amber text and seven-segment digits. */
+:host {
+  display: block;
+  /* a fixed width keeps the board the same size in both states (details and "now arriving") */
+  width: min(800px, 94%);
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+.indicator {
+  --led-color: #ffb43a;
+  --led-color-soft: #ffd793;
+  --segment-on: #ffb43a;
+  --segment-off: #2a2010;
+  --segment-glow: #ffb43a99;
+  position: relative;
+  width: 100%;
+  margin: 0 auto 30px;
+  animation: rise 0.8s ease both;
+}
+.indicator-rod {
+  position: absolute;
+  top: -26px;
+  width: 5px;
+  height: 26px;
+  background: linear-gradient(#6b7785, #2a3340);
+}
+.indicator-rod.is-left {
+  left: 12%;
+}
+.indicator-rod.is-right {
+  right: 12%;
+}
+.indicator-panel {
+  position: relative;
+  min-height: 300px;
+  padding: 22px 26px 18px;
+  border: 7px solid #1a2230;
+  border-radius: 16px;
+  color: var(--led-color);
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px #2d3a4e,
+    0 24px 44px #0a121c55,
+    inset 0 0 50px #000;
+  background:
+    radial-gradient(circle at 14px 14px, #46536a 0 3px, transparent 3.5px),
+    radial-gradient(
+      circle at calc(100% - 14px) 14px,
+      #46536a 0 3px,
+      transparent 3.5px
+    ),
+    radial-gradient(
+      circle at 14px calc(100% - 14px),
+      #46536a 0 3px,
+      transparent 3.5px
+    ),
+    radial-gradient(
+      circle at calc(100% - 14px) calc(100% - 14px),
+      #46536a 0 3px,
+      transparent 3.5px
+    ),
+    #07090d;
+}
+.indicator-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, transparent 52%, #00000066 56%) 0 0/4px
+    4px;
+}
+.indicator small {
+  display: block;
+  font:
+    500 10px "DM Mono",
+    monospace;
+  letter-spacing: 0.2em;
+  color: #b98a2e;
+}
+.indicator-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 22px;
+  align-items: center;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed #5a4217;
+}
+.indicator-platform app-seven-seg {
+  --digit-height: 64px;
+  margin-top: 6px;
+}
+.indicator-dates {
+  text-align: right;
+}
+.indicator-dates app-seven-seg {
+  --digit-height: 22px;
+  margin-top: 8px;
+}
+.indicator-title {
+  min-width: 0;
+  text-align: center;
+}
+.indicator-name {
+  margin: 4px 0 2px;
+  font:
+    700 clamp(20px, 3.2vw, 32px)/1.1 "DM Mono",
+    monospace;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--led-color);
+  text-shadow: 0 0 10px var(--segment-glow);
+}
+.indicator-panel .indicator-role {
+  margin: 0;
+  font:
+    500 14px "DM Mono",
+    monospace;
+  color: var(--led-color-soft);
+}
+.indicator-note {
+  margin: 2px 0 0;
+  font:
+    12px "DM Mono",
+    monospace;
+  color: #b98a2e;
+}
+.indicator-panel ul {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  font:
+    500 13.5px/1.55 "DM Mono",
+    monospace;
+  color: var(--led-color-soft);
+}
+.indicator-panel li {
+  position: relative;
+  margin: 6px 0;
+  padding-left: 20px;
+  opacity: 0;
+  animation: ledOn 0.5s steps(2, end) forwards;
+}
+.indicator-panel li::before {
+  content: ">";
+  position: absolute;
+  left: 0;
+  color: var(--led-color);
+}
+.indicator-panel li:nth-child(1) {
+  animation-delay: 0.4s;
+}
+.indicator-panel li:nth-child(2) {
+  animation-delay: 0.7s;
+}
+.indicator-panel li:nth-child(3) {
+  animation-delay: 1s;
+}
+.indicator-panel li:nth-child(4) {
+  animation-delay: 1.3s;
+}
+.indicator-panel li:nth-child(5) {
+  animation-delay: 1.6s;
+}
+@keyframes ledOn {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.85;
+  }
+  45% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.indicator-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  font:
+    500 11px "DM Mono",
+    monospace;
+  letter-spacing: 0.18em;
+  color: #6fe3a0;
+}
+.status-light {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4cff9a;
+  box-shadow: 0 0 8px #4cff9a;
+}
+.indicator-transit {
+  display: grid;
+  place-content: center;
+  min-height: 250px;
+  text-align: center;
+}
+.blink {
+  animation: blink 1s steps(2, start) infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0.25;
+  }
+}
+@media (max-width: 640px) {
+  .indicator-head {
+    grid-template-columns: auto 1fr;
+  }
+  .indicator-dates {
+    grid-column: 1/-1;
+    text-align: left;
+  }
+  .indicator-platform app-seven-seg {
+    --digit-height: 48px;
+  }
+  .indicator-panel {
+    padding: 18px 16px 14px;
+  }
+}

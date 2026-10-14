@@ -1,0 +1,174 @@
+/* Journey: platform board above, the track with the train below, ride controls at the bottom. */
+:host {
+  display: block;
+}
+.journey {
+  padding-top: 120px;
+  background: linear-gradient(#e3edf2, var(--color-paper) 75%);
+  --fade-colour: var(--color-night);
+}
+.journey-intro h2 {
+  margin: 0 0 10px;
+}
+.rail-scene {
+  --train-width: clamp(420px, 80vw, 900px);
+  --stop-spacing: 175px;
+  position: relative;
+  height: clamp(190px, 16vw, 210px);
+  overflow: hidden;
+  border-radius: 18px;
+  background: linear-gradient(#e9f0f4, #f4f0e8);
+}
+.rail-scene::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 34px;
+  background: #2b3440;
+}
+.skyline {
+  position: absolute;
+  left: 0;
+  bottom: 34px;
+  width: calc(100% + 400px);
+  height: 110px;
+  transform: translateX(calc(var(--current-stop, 0) * -60px));
+  transition: transform 2.2s cubic-bezier(0.5, 0, 0.3, 1);
+}
+.track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 34px;
+  height: 14px;
+  background:
+    linear-gradient(90deg, #6b5a4a 0 10px, transparent 10px) 0 0/30px 100%
+      repeat-x,
+    linear-gradient(#8b95a1 0 3px, transparent 3px 11px, #8b95a1 11px) 0 0/100%
+      100%;
+  z-index: 2;
+}
+.is-moving .track {
+  animation: ties 0.45s linear infinite;
+}
+@keyframes ties {
+  to {
+    background-position:
+      -30px 0,
+      0 0;
+  }
+}
+.train {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  width: var(--train-width);
+  transform: translateX(-50%);
+  z-index: 3;
+  filter: drop-shadow(0 6px 6px #1c24302a);
+}
+.is-moving .train {
+  animation: rock 0.35s ease-in-out infinite;
+}
+@keyframes rock {
+  50% {
+    transform: translateX(-50%) translateY(-2px);
+  }
+}
+.overhead-wire {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(46px + var(--train-width) * 0.112);
+  height: 1px;
+  background: #1c243044;
+}
+.station-strip {
+  position: absolute;
+  inset: 0;
+  transform: translateX(
+    calc(var(--current-stop, 0) * var(--stop-spacing) * -1)
+  );
+  transition: transform 2.2s cubic-bezier(0.5, 0, 0.3, 1);
+  z-index: 1;
+}
+.station-sign {
+  position: absolute;
+  bottom: calc(44px + var(--train-width) * 0.1);
+  left: calc(50% + var(--stop-index) * var(--stop-spacing));
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  opacity: 0.75;
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+}
+.station-sign.is-current,
+.station-sign:hover {
+  opacity: 1;
+}
+.station-sign.is-current {
+  transform: translateX(-50%) scale(1.12);
+}
+.roundel {
+  position: relative;
+  display: block;
+  width: 58px;
+  height: 58px;
+}
+.roundel svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 2px 3px #1c243026);
+}
+.roundel b {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: max-content;
+  max-width: 128px;
+  padding: 3px 8px;
+  background: #0a3d91;
+  color: #fff;
+  font:
+    700 8.5px/1.2 Inter,
+    sans-serif;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.station-sign i {
+  width: 3px;
+  height: 10px;
+  background: #6b7785;
+}
+.ride-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+.journey-intro .section-lead {
+  margin: 0 0 4px;
+}
+.indicator-stage {
+  position: relative;
+  min-height: 350px;
+  display: grid;
+  place-items: end center;
+  padding: 26px 0 0;
+}
+@media (min-width: 900px) {
+  .rail-scene {
+    --stop-spacing: 270px;
+  }
+}

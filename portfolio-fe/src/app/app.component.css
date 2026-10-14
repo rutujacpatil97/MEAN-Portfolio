@@ -1,0 +1,16 @@
+:host {
+  display: block;
+  overflow-x: clip;
+}
+
+.section-placeholder {
+  min-height: 100svh;
+}
+
+.site-footer {
+  padding: 36px 20px;
+  background: var(--color-night);
+  color: #98a3b3;
+  text-align: center;
+  font: 12px var(--font-mono);
+}

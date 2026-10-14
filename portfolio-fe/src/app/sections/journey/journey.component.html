@@ -1,0 +1,115 @@
+<section class="journey full-screen-section fade-in-from-above" id="journey">
+  <div class="container">
+    <header class="journey-intro">
+      <p class="eyebrow">01 — THE JOURNEY</p>
+      <h2>All aboard?</h2>
+      <p class="section-lead">
+        One train, six stops, newest first. Press <b>Next stop</b> to ride back
+        through my career and education, or tap any station sign on the track.
+      </p>
+    </header>
+
+    <div class="indicator-stage" aria-live="polite">
+      @if (currentStop(); as stop) {
+        <app-platform-indicator
+          [stop]="stop"
+          [platformNumber]="currentStopIndex() + 1"
+          [isArriving]="isMoving()"
+        />
+      }
+    </div>
+
+    <div
+      class="rail-scene"
+      [class.is-moving]="isMoving()"
+      [style.--current-stop]="currentStopIndex()"
+    >
+      <svg
+        class="skyline"
+        viewBox="0 0 1200 120"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M0 120V70h60V40h40v30h50V20h45v50h60V50h40V80h70V30h50v40h60V60h50V25h40v45h70V55h60v30h60V45h50v40h80V35h45v35h60V65h70V50h50v70z"
+          fill="#1c2430"
+          opacity=".08"
+        />
+      </svg>
+      <div class="overhead-wire"></div>
+
+      <div class="station-strip">
+        @for (stop of stops(); track stop.organisation; let index = $index) {
+          <button
+            class="station-sign"
+            type="button"
+            [style.--stop-index]="index"
+            [class.is-current]="index === currentStopIndex()"
+            [attr.aria-label]="'Go to ' + stop.organisation"
+            (click)="rideTo(index)"
+          >
+            <span class="roundel">
+              <svg viewBox="0 0 100 100" aria-hidden="true">
+                <polygon
+                  points="50,2 98,50 50,98 2,50"
+                  fill="#fff"
+                  stroke="#d6cfc2"
+                  stroke-width="1.5"
+                />
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="24"
+                  fill="none"
+                  stroke="#e30613"
+                  stroke-width="11"
+                />
+              </svg>
+              <b>{{ stop.shortName }}</b>
+            </span>
+            <i></i>
+          </button>
+        }
+      </div>
+
+      <div class="track"></div>
+      <app-local-train class="train" [isMoving]="isMoving()" />
+    </div>
+
+    <div class="ride-controls">
+      <button
+        class="btn btn-ghost"
+        type="button"
+        [disabled]="isMoving() || currentStopIndex() === 0"
+        (click)="rideTo(currentStopIndex() - 1)"
+      >
+        ◀ Previous
+      </button>
+
+      <span class="mono"
+        >STOP {{ currentStopIndex() + 1 }} / {{ stops().length }}</span
+      >
+
+      @if (currentStopIndex() < stops().length - 1) {
+        <button
+          class="btn"
+          type="button"
+          [class.btn-pulse]="!hasStartedRide()"
+          [disabled]="isMoving()"
+          (click)="rideTo(currentStopIndex() + 1)"
+        >
+          Next stop ▶
+        </button>
+      } @else {
+        <button
+          class="btn"
+          type="button"
+          [disabled]="isMoving()"
+          (click)="rideTo(0)"
+        >
+          Back to start ↺
+        </button>
+      }
+    </div>
+  </div>
+</section>

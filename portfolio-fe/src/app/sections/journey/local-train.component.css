@@ -1,0 +1,27 @@
+:host {
+  display: block;
+}
+
+svg {
+  display: block;
+  width: 100%;
+}
+
+.wheel {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.is-moving .wheel {
+  animation: spin 0.5s linear infinite;
+}
+
+.is-moving .headlamp {
+  filter: drop-shadow(0 0 8px #f3d58a);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

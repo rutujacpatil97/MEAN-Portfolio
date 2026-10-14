@@ -1,0 +1,41 @@
+<div class="indicator">
+  <span class="indicator-rod is-left"></span>
+  <span class="indicator-rod is-right"></span>
+
+  <div class="indicator-panel">
+    @if (!isArriving) {
+      <div class="indicator-head">
+        <div class="indicator-platform">
+          <small>PLATFORM</small>
+          <app-seven-seg [value]="platformDigits" />
+        </div>
+
+        <div class="indicator-title">
+          <small>{{ stop.kind === "edu" ? "EDUCATION" : "EXPERIENCE" }}</small>
+          <h3 class="indicator-name">{{ stop.organisation }}</h3>
+          <p class="indicator-role">{{ stop.title }}</p>
+        </div>
+
+        <div class="indicator-dates">
+          <small>FROM – TO</small>
+          <app-seven-seg [value]="stop.dateDigits" />
+        </div>
+      </div>
+
+      <ul>
+        @for (point of stop.points; track point) {
+          <li>{{ point }}</li>
+        }
+      </ul>
+
+      <div class="indicator-status">
+        <span class="status-light"></span>ARRIVED · ON TIME
+      </div>
+    } @else {
+      <div class="indicator-transit">
+        <small>NOW ARRIVING</small>
+        <h3 class="indicator-name blink">{{ stop.organisation }}</h3>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,30 @@
+:host {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: calc(var(--digit-height, 40px) * 0.14);
+  height: var(--digit-height, 40px);
+}
+
+svg {
+  height: 100%;
+  width: auto;
+}
+
+path {
+  fill: var(--segment-off, #2a2010);
+  transition: fill 0.3s;
+}
+
+path.is-lit {
+  fill: var(--segment-on, #ffb43a);
+  filter: drop-shadow(0 0 3px var(--segment-glow, #ffb43a99));
+}
+
+.dot {
+  width: calc(var(--digit-height, 40px) * 0.1);
+  height: calc(var(--digit-height, 40px) * 0.1);
+  margin: 0 calc(var(--digit-height, 40px) * -0.04);
+  border-radius: 50%;
+  background: var(--segment-on, #ffb43a);
+  box-shadow: 0 0 5px var(--segment-glow, #ffb43a99);
+}

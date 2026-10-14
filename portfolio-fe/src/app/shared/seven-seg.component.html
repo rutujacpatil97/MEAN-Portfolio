@@ -1,0 +1,14 @@
+@for (character of characters; track $index) {
+  @if (character === ".") {
+    <i class="dot"></i>
+  } @else {
+    <svg viewBox="0 0 40 70" aria-hidden="true">
+      @for (segment of segments; track segment.name) {
+        <path
+          [attr.d]="segment.path"
+          [class.is-lit]="isLit(character, segment.name)"
+        />
+      }
+    </svg>
+  }
+}

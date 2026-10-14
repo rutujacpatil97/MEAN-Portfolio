@@ -1,0 +1,118 @@
+<section class="skills full-screen-section fade-in-from-above">
+  <div class="container">
+    <header class="section-heading">
+      <p class="eyebrow">02 — THE CIRCUIT BOARD</p>
+      <h2>Skills, soldered together</h2>
+      <p>Hover a chip to send current down its wire.</p>
+    </header>
+
+    <svg class="circuit-board" viewBox="0 0 1000 680" role="img"
+      aria-label="Circuit board of skill groups wired to a central processor">
+      <defs>
+        <pattern id="perfboard-holes" width="20" height="20" patternUnits="userSpaceOnUse">
+          <circle cx="10" cy="10" r="3" fill="#082623" stroke="#b98a52" stroke-width="1.4" />
+        </pattern>
+        <filter id="led-glow" x="-80%" y="-80%" width="260%" height="260%">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+
+      <!-- the board itself -->
+      <rect width="1000" height="680" rx="22" fill="#0f3b35" stroke="#0a2a26" stroke-width="6" />
+      <rect width="1000" height="680" rx="22" fill="url(#perfboard-holes)" opacity=".5" />
+      @for (hole of mountingHoles; track $index) {
+      <circle [attr.cx]="hole.x" [attr.cy]="hole.y" r="10" fill="#082623" stroke="#b98a52" stroke-width="3" />
+      }
+      @for (trace of copperTraces; track trace) {
+      <path [attr.d]="trace" class="copper-trace" />
+      }
+      @for (part of smdParts; track part.label) {
+      <rect [attr.x]="part.x" [attr.y]="part.y" width="26" height="12" rx="2" fill="#c8b48a" />
+      <rect [attr.x]="part.x + 8" [attr.y]="part.y" width="10" height="12" fill="#2a2a2e" />
+      <text [attr.x]="part.x" [attr.y]="part.y - 4" class="pin-label">
+        {{ part.label }}
+      </text>
+      }
+
+      <!-- the central processor -->
+      @for (offset of processorPinOffsets; track offset) {
+      <rect x="408" [attr.y]="294 + offset * 25" width="12" height="12" fill="#c8ccd2" />
+      <rect x="580" [attr.y]="294 + offset * 25" width="12" height="12" fill="#c8ccd2" />
+      <rect [attr.x]="448 + offset * 25" y="268" width="12" height="12" fill="#c8ccd2" />
+      <rect [attr.x]="448 + offset * 25" y="420" width="12" height="12" fill="#c8ccd2" />
+      }
+      <rect x="420" y="280" width="160" height="140" rx="8" fill="#12161c" stroke="#3a424d" stroke-width="2" />
+      <circle cx="436" cy="296" r="4" fill="#3a424d" />
+      <text x="500" y="345" text-anchor="middle" class="processor-label">
+        {{ profile()?.name?.split(" ")?.[0]?.toUpperCase() }}
+      </text>
+      <text x="500" y="368" text-anchor="middle" class="pin-label">
+        CORE
+      </text>
+
+      <!-- one IC chip per skill group, wired to the processor -->
+      @for (chip of chips(); track chip.name) {
+      <g class="chip-group" tabindex="0" [class.is-active]="hoveredChip() === chip.name"
+        (mouseenter)="hoveredChip.set(chip.name)" (mouseleave)="hoveredChip.set('')"
+        (focus)="hoveredChip.set(chip.name)" (blur)="hoveredChip.set('')">
+        @for (row of chipPinRows; track row) {
+        <rect [attr.x]="chip.x - 10" [attr.y]="chip.y + 46 + row * 21" width="10" height="8" fill="#c8ccd2" />
+        <rect [attr.x]="chip.x + chip.width" [attr.y]="chip.y + 46 + row * 21" width="10" height="8" fill="#c8ccd2" />
+        }
+        <rect [attr.x]="chip.x" [attr.y]="chip.y" [attr.width]="chip.width" height="190" rx="6" class="chip-body" />
+        <path [attr.d]="
+              'M' +
+              (chip.x + chip.width / 2 - 8) +
+              ' ' +
+              chip.y +
+              'a8 8 0 0 0 16 0'
+            " fill="none" stroke="#3a424d" stroke-width="2" />
+        <text [attr.x]="chip.x + chip.width / 2" [attr.y]="chip.y + 28" text-anchor="middle" class="silkscreen">
+          {{ chip.name.toUpperCase() }}
+        </text>
+        @for (skill of chip.skills; track skill.name) {
+        <text [attr.x]="chip.x + 16" [attr.y]="skill.y" class="pin-label">
+          {{ skill.name }}
+        </text>
+        }
+        <circle [attr.cx]="chip.x + chip.width - 14" [attr.cy]="chip.y + 12" r="4" [attr.fill]="
+              hoveredChip() === chip.name ? chip.wireColour : '#2b3138'
+            " [attr.filter]="
+              hoveredChip() === chip.name ? 'url(#led-glow)' : null
+            " />
+
+        <!-- jumper wire -->
+        <path [attr.d]="chip.wirePath" class="wire-shadow" />
+        <path [attr.d]="chip.wirePath" class="jumper-wire" [attr.stroke]="chip.wireColour" />
+        <path [attr.d]="chip.wirePath" class="wire-current" />
+        <circle [attr.cx]="chip.wireStart.x" [attr.cy]="chip.wireStart.y" r="6" fill="#0a2a26"
+          [attr.stroke]="chip.wireColour" stroke-width="3" />
+        <circle [attr.cx]="chip.wireEnd.x" [attr.cy]="chip.wireEnd.y" r="6" fill="#0a2a26"
+          [attr.stroke]="chip.wireColour" stroke-width="3" />
+      </g>
+      }
+
+      <text x="500" y="660" text-anchor="middle" class="pin-label">
+        PORTFOLIO · REV 7.0 · {{ currentYear }}
+      </text>
+    </svg>
+
+    <!-- on small screens the board is replaced by plain cards -->
+    <div class="skill-cards">
+      @for (chip of chips(); track chip.name) {
+      <div class="skill-card">
+        <h3>{{ chip.name }}</h3>
+        <div class="tags">
+          @for (skill of chip.skills; track skill.name) {
+          <span class="tag">{{ skill.name }}</span>
+          }
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>

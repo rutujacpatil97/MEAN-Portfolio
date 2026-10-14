@@ -1,0 +1,4 @@
+node_modules
+.env
+PROFILE_COLLECTION=profiles
+CORS_ORIGIN=http://localhost:4200
