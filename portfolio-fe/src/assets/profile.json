@@ -140,23 +140,23 @@
     },
     {
       "name": "NYSA Motor Insurance",
-      "desc": "Agent-facing two- and four-wheeler journeys: quote, premium calculation, proposal, payment and policy issuance.",
-      "stack": "Angular, TypeScript"
+      "desc": "Agent-facing two and four-wheeler journeys: quote, premium calculation, proposal, payment and policy issuance.",
+      "stack": "Angular, TypeScript, RxJS"
     },
     {
       "name": "Multi Quote",
       "desc": "Application revamp with multi-tenure quotes to compare options. Owned the AddOn and Discount modules.",
-      "stack": "Angular, TypeScript"
+      "stack": "Angular, TypeScript, Figma"
     },
     {
       "name": "Issuance & Endorsement QC",
       "desc": "QC portal for proposal verification with slideshow document review and reason-wise approve/reject workflows.",
-      "stack": "Angular, TypeScript"
+      "stack": "Angular, TypeScript, Figma"
     },
     {
       "name": "Add-on Applicability",
       "desc": "Dynamic add-on eligibility and API-driven bundles (Zero Dep, Consumables, RSA, Tyre/Engine Protect) with real-time premium recalculation.",
-      "stack": "Angular, RxJS"
+      "stack": "Angular, TypeScript, RxJS"
     }
   ],
   "awards": [

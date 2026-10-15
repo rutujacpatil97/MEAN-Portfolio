@@ -2,7 +2,7 @@ import { Component, computed, inject, signal } from "@angular/core";
 import { ProfileService } from "../../core/profile.service";
 
 // Heights of the stars as a percentage of the sky; they zig-zag so neighbouring labels never collide.
-const STAR_HEIGHTS = [52, 24, 54, 20, 52, 28, 48];
+const STAR_HEIGHTS = [60, 18, 62, 14, 60, 24, 56];
 
 @Component({
   selector: "app-awards",

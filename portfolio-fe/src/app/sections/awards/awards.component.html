@@ -17,16 +17,19 @@
           [style.animation-delay.s]="star.twinkleDelay"
         />
       }
-      @for (link of constellationLinks(); track $index) {
-        <line
-          class="constellation-line"
-          [attr.x1]="link.fromLeft + '%'"
-          [attr.y1]="link.fromTop + '%'"
-          [attr.x2]="link.toLeft + '%'"
-          [attr.y2]="link.toTop + '%'"
-        />
-      }
     </svg>
+    <div class="sky-stage">
+        <svg class="sky-backdrop" aria-hidden="true">
+        @for (link of constellationLinks(); track $index) {
+          <line
+            class="constellation-line"
+            [attr.x1]="link.fromLeft + '%'"
+            [attr.y1]="link.fromTop + '%'"
+            [attr.x2]="link.toLeft + '%'"
+            [attr.y2]="link.toTop + '%'"
+          />
+        }
+      </svg>
 
     @for (star of awardStars(); track star.title; let index = $index) {
       <button
@@ -42,6 +45,7 @@
         <span class="award-label">{{ star.title }}</span>
       </button>
     }
+    </div>
 
     <div class="award-panel container">
       <div class="award-list">

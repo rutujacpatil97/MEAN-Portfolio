@@ -50,6 +50,14 @@
   position: relative;
   flex: 1;
   min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sky-stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
 }
 
 .sky-backdrop {
@@ -124,14 +132,12 @@
 /* ---- award list and details, overlaid at the bottom of the sky ---- */
 
 .award-panel {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 14px;
+  padding-top: 12px;
 }
 
 .award-list {
